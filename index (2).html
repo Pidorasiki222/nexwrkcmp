@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexusware & Synapse X Fanmade</title>
+    <style>
+        @keyframes entrance {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Анимация для легкого мерцания капель */
+        @keyframes dropletFade {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.7; }
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #000;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        /* Задний фон всего сайта */
+        .full-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://media.discordapp.net/attachments/1428045366204305438/1476107030925414525/image.png?ex=699feb4c&is=699e99cc&hm=fd0529e65f97cff51f60dae467db2ce0ee6fde75e5d0ceb14692420ff5cb018b&=&format=webp&quality=lossless&width=421&height=275') no-repeat center center;
+            background-size: cover;
+            filter: blur(40px) brightness(0.1); /* Усилили блюр для акцента на контенте */
+            z-index: -1;
+            transform: scale(1.1);
+        }
+
+        .main-container {
+            display: flex;
+            gap: 25px;
+            max-width: 900px;
+            width: 100%;
+            animation: entrance 0.7s ease-out;
+        }
+
+        /* КАРТОЧКА ПРОЕКТА */
+        .project-card {
+            flex: 1;
+            background-color: rgba(10, 10, 12, 0.8); /* Затемненный фон */
+            backdrop-filter: blur(25px);
+            padding: 30px;
+            border-radius: 35px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            transition: transform 0.3s ease, border-color 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        /* КОНТЕЙНЕР ДЛЯ ФОТО С ЭФФЕКТАМИ */
+        .img-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 240px; /* УМЕНЬШЕННЫЙ РАЗМЕР ФОТО */
+            margin: 0 auto 20px;
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        .project-img {
+            width: 100%;
+            height: 160px; /* Фиксированная высота */
+            object-fit: cover;
+            display: block;
+            /* ЭФФЕКТ ТЕНИ */
+            filter: drop-shadow(0 8px 15px rgba(0,0,0,0.9));
+            transition: transform 0.5s ease;
+        }
+
+        /* ЭФФЕКТ КАПЕЛЬ */
+        .drops-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            /* Рисуем капли через радиальные градиенты */
+            background-image: 
+                radial-gradient(circle at 15% 25%, rgba(255,255,255,0.4) 1px, transparent 3px),
+                radial-gradient(circle at 45% 65%, rgba(255,255,255,0.3) 2px, transparent 6px),
+                radial-gradient(circle at 80% 35%, rgba(255,255,255,0.4) 1.5px, transparent 4px),
+                radial-gradient(circle at 30% 85%, rgba(255,255,255,0.2) 4px, transparent 9px),
+                radial-gradient(circle at 75% 80%, rgba(255,255,255,0.3) 2px, transparent 5px);
+            animation: dropletFade 4s infinite ease-in-out;
+        }
+
+        .project-card:hover .project-img {
+            transform: scale(1.08);
+        }
+
+        h1 {
+            font-size: 26px;
+            margin-bottom: 12px;
+            color: #fff;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        p {
+            color: #999;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+            min-height: 60px;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 12px;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            transition: 0.25s;
+            text-align: center;
+        }
+
+        .btn-action {
+            background-color: #fff;
+            color: #000;
+        }
+
+        .btn-action:hover {
+            background-color: #eee;
+            transform: scale(1.02);
+        }
+
+        .btn-discord {
+            background-color: #5865F2;
+            color: #fff;
+        }
+
+        .btn-discord:hover {
+            background-color: #4752c4;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 750px) {
+            .main-container { flex-direction: column; align-items: center; }
+            .project-card { width: 100%; max-width: 400px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="full-bg"></div>
+
+    <div class="main-container">
+        
+        <div class="project-card">
+            <div>
+                <div class="img-wrapper">
+                    <img src="https://cdn.discordapp.com/attachments/1428045366204305438/1476171659919757372/image.png?ex=69a0277d&is=699ed5fd&hm=717586ca9d354efbec651284bdb21b7bef5d033554af4e52bd3f9fd2098e8340" alt="Nexusware" class="project-img">
+                    <div class="drops-overlay"></div>
+                </div>
+                <h1>Nexusware</h1>
+                <p>Advanced multi-purpose utility built for power users within the synetworkcmp ecosystem.</p>
+            </div>
+            <div class="btn-group">
+                <a href="#" class="btn btn-action">Download Nexusware</a>
+                <a href="https://discord.gg/vEyjVdBMab" class="btn btn-discord">Community Discord</a>
+            </div>
+        </div>
+
+        <div class="project-card">
+            <div>
+                <div class="img-wrapper">
+                    <img src="https://media.discordapp.net/attachments/1428045366204305438/1476107030925414525/image.png?ex=699feb4c&is=699e99cc&hm=fd0529e65f97cff51f60dae467db2ce0ee6fde75e5d0ceb14692420ff5cb018b&=&format=webp&quality=lossless&width=421&height=275" alt="Synapse X Fanmade" class="project-img">
+                    <div class="drops-overlay"></div>
+                </div>
+                <h1>Synapse X Fanmade</h1>
+                <p>The legendary interface reimagined with modern performance enhancements.</p>
+            </div>
+            <div class="btn-group">
+                <a href="#" class="btn btn-action">Get Access</a>
+                <a href="https://discord.gg/vEyjVdBMab" class="btn btn-discord">Support Discord</a>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
